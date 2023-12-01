@@ -15,7 +15,6 @@ const password = process.env.password || ''
 const database = process.env.database || '19100794'
 const dbport = process.env.dbport || 3306
 
-
 const theme = new SwaggerTheme('v3');
 
 const options = {
