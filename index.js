@@ -220,7 +220,7 @@ app.get("/carro", (req, res) => {
 });
 
 app.get("/carro/:modelo", async (req, res) => {
-        const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, dbport: dbport })
+        const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, port: dbport })
         const [rows, fields] = await conn.query("SELECT * from carro where modelo = '" + req.params.modelo+"'");
         if (rows.lenght == 0) {
             res.json({ mensaje: "Modelo No Existe" });
@@ -231,7 +231,7 @@ app.get("/carro/:modelo", async (req, res) => {
 
 //Eliminar
 app.delete("/carro/:id", async (req, res) => {
-    const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, dbport: dbport })
+    const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, port: dbport })
     const [rows, fields] = await conn.query(`delete from carro where id = ${req.params.id}`);
     if (rows.affectedRows) {
         res.json({ mensaje: "Registro Eliminado" });
@@ -247,7 +247,7 @@ app.listen(PORT, (req, res) => {
 //Insertar
 app.post("/carroso", async (req, res) => {
     try {
-        const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, dbport: dbport });
+        const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, port: dbport });
         const id = req.body['id'];
         const modelo = req.body['modelo'];
         const año = req.body['año'];
@@ -268,7 +268,7 @@ app.post("/carroso", async (req, res) => {
 //Actualizar
 app.patch("/carro", async (req, res) => {
     try {
-        const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, dbport: dbport });
+        const conn = await mysql.createConnection({ host: host, user: user, password: password, database: database, port: dbport });
         const carroId = req.query.id;
         const { modelo, año, marca } = req.body;
         const updateData = {};
