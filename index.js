@@ -8,7 +8,7 @@ const swaggerJsDoc = require('swagger-jsdoc')
 const { SwaggerTheme } = require('swagger-themes');
 const redoc = require('redoc-express');
 const app = express();
-const port = process.env.PORT || 8084
+const PORT = process.env.PORT || 8084
 const host = process.env.host || 'localhost'
 const user = process.env.user || 'root'
 const password = process.env.password || ''
@@ -214,7 +214,7 @@ app.use(express.json());
 
 //Async Await
 app.get("/carro", (req, res) => {
-    mysql.createConnection({ host: host, user: user, password: password, database: database, dbport: dbport })
+    mysql.createConnection({ host: host, user: user, password: password, database: database, port: dbport })
         .then(conn => conn.query('SELECT * from carro'))
         .then(([rows, fields]) => res.json(rows));
 });
